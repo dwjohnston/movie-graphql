@@ -53,8 +53,6 @@ function fetchPersonImages(id) {
   return fetchResponseByURL(`/person/${id}/images`).then(json => json.profiles[0]);
 }
 
-console.log(API_KEY);
-
 const PersonType = new GraphQLObjectType({
   name: 'Person',
   description: 'An actor or a crew member',
@@ -90,22 +88,6 @@ const PersonType = new GraphQLObjectType({
 });
 
 
-// const CreditType = new GraphQLObjectType({
-//   name: 'Credit',
-//   description: '...',
-//   fields: () => ({
-//     name: {
-//       type: GraphQLString,
-//       resolve: movie => movie.title,
-//     },
-//     id: { type: GraphQLInt },
-//     //   friends: {
-//     //     type: new GraphQLList(PersonType),
-//     //     resolve: person => // Fetch the friends with the URLs `person.friends`,
-//     //   },
-//   }),
-
-// });
 
 
 const ImageType = new GraphQLObjectType({
@@ -123,7 +105,7 @@ const ImageType = new GraphQLObjectType({
       type: GraphQLString,
       resolve: image => {
         console.log(IMAGE_URL, "AA")
-        return `${IMAGE_URL}/w185${image.file_path}`;  //Todo properly ref image sizes
+        return `${IMAGE_URL}/w185${image.file_path}`;  //We're just hard coding the size here for now. 
       }
     }
   })
