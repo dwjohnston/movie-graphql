@@ -3,6 +3,12 @@ const graphql = require("graphql");
 
 const {GraphQLString, GraphQLList,  GraphQLObjectType, GraphQLSchema} = graphql; 
 
+
+const BASE_URL = "https://api.themoviedb.org/3/"
+const API_KEY = require("./api-key.json").key; 
+
+console.log(API_KEY);
+
 const PersonType = new GraphQLObjectType({
     name: 'Person',
     description: 'An actor or a crew member',
@@ -17,6 +23,10 @@ const PersonType = new GraphQLObjectType({
     //     resolve: person => // Fetch the friends with the URLs `person.friends`,
     //   },
     }),
+
+    resolve: () => {
+      
+    }
   });
 
   const MovieType = new GraphQLObjectType({
@@ -33,6 +43,10 @@ const PersonType = new GraphQLObjectType({
     //     resolve: person => // Fetch the friends with the URLs `person.friends`,
     //   },
     }),
+
+    resolve: () => {
+
+    }
   });
 
 const Schema = new GraphQLSchema({
