@@ -1,0 +1,15 @@
+.preview {
+    padding: 0.5em;
+
+    h4 {
+        margin: 0.25em;
+        font-size: 0.8em;
+    }
+
+    img {
+        object-fit: contain; 
+        max-width: 6em;
+        margin: auto;
+        display: block;
+    }
+}

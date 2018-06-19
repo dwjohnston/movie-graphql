@@ -1,0 +1,18 @@
+@import "theme";
+
+html, body {
+  background-color: $color-bg; 
+  color: $color-text; 
+}
+
+
+.App {
+  max-width: 40em; 
+  margin: auto;
+
+  background-color: $color-primary; 
+
+  padding: 1em;
+
+
+}

@@ -4,6 +4,9 @@ import environment from "../environment";
 import { graphql, QueryRenderer } from 'react-relay';
 
 import PersonPreview from "./PersonPreview";
+
+import "./styles/feature.css";
+
 class MovieFeature extends Component {
 
 
@@ -39,12 +42,12 @@ class MovieFeature extends Component {
                     }
 
                     console.log(props);
-                    return <div>
+                    return <div className ="feature movie-feature">
                         <h2> {props.movie.name} </h2>
 
                         {props.movie.image && <img src={props.movie.image.absoluteFilePath}></img>}
 
-                        <strong> starring: </strong>
+                        <h3> starring </h3>
 
                         <div className="starring">
                             {props.movie.starring.map((v, i) => <PersonPreview key={i} personID={v.restId} />)}

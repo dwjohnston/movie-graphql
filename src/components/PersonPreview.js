@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import environment from "../environment";
 import { graphql, QueryRenderer } from 'react-relay';
 
+import "./styles/preview.css";
 
 class PersonPreview extends Component {
 
@@ -34,7 +35,7 @@ class PersonPreview extends Component {
                     if (!props) {
                         return <div>Loading...</div>;
                     }
-                    return <div>
+                    return <div className ="preview person-preview">
                         <h4> {props.person.name} </h4> 
                         {props.person.image && <img src = {props.person.image.absoluteFilePath}></img>}
                     </div>;

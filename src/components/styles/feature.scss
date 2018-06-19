@@ -1,0 +1,13 @@
+.feature {
+    
+    h2 {
+        text-align: center; 
+    }
+    
+    
+    .starring, .appears-in {
+    
+        display: flex;
+        flex-flow: row wrap; 
+    }
+}
