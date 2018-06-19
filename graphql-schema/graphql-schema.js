@@ -64,7 +64,14 @@ const PersonType = new GraphQLObjectType({
         return person.name;
       }
     },
-    id: { type: GraphQLID },
+    id: { type: GraphQLID, 
+      resolve: p => "person"+ p.id 
+    },
+    restId: {
+      type : GraphQLInt, 
+      resolve: p => p.id
+    },
+
 
     image: {
       type: ImageType,
@@ -124,7 +131,13 @@ const MovieType = new GraphQLObjectType({
       type: ImageType,
       resolve: movie => fetchMovieImages(movie.id)
     },
-    id: { type: GraphQLID },
+    id: { type: GraphQLID, 
+      resolve: m => "movie"+ m.id 
+    },
+    restId: {
+      type : GraphQLInt,
+      resolve: m => r.id
+    },
 
 
     starring: {
@@ -145,16 +158,16 @@ const QueryType = new GraphQLObjectType({
     person: {
       type: PersonType,
       args: {
-        id: { type: GraphQLID }
+        restId: { type: GraphQLInt }
       },
-      resolve: (root, args) => fetchPerson(args.id)
+      resolve: (root, args) => fetchPerson(args.restId)
     },
     movie: {
       type: MovieType,
       args: {
-        id: { type: GraphQLID }
+        restId: { type: GraphQLInt }
       },
-      resolve: (root, args) => fetchMovie(args.id)
+      resolve: (root, args) => fetchMovie(args.restId)
 
     }
   })

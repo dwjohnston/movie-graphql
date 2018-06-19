@@ -14,6 +14,7 @@ type Movie {
   name: String
   image: Image
   id: ID
+  restId: Int
   starring: [Person]
 }
 
@@ -21,12 +22,13 @@ type Movie {
 type Person {
   name: String
   id: ID
+  restId: Int
   image: Image
   appearsIn: [Movie]
 }
 
 type RootQueryType {
-  person(id: ID): Person
-  movie(id: ID): Movie
+  person(restId: Int): Person
+  movie(restId: Int): Movie
 }
 
