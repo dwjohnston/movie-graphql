@@ -1,7 +1,7 @@
 const graphql = require("graphql");
 const fetch = require("node-fetch");
 
-const { GraphQLString, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema } = graphql;
+const { GraphQLString,GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema } = graphql;
 
 const BASE_URL = "https://api.themoviedb.org/3"
 const API_KEY = require("./api-key.json").key;
@@ -64,7 +64,7 @@ const PersonType = new GraphQLObjectType({
         return person.name;
       }
     },
-    id: { type: GraphQLInt },
+    id: { type: GraphQLID },
 
     image: {
       type: ImageType,
@@ -124,7 +124,7 @@ const MovieType = new GraphQLObjectType({
       type: ImageType,
       resolve: movie => fetchMovieImages(movie.id)
     },
-    id: { type: GraphQLInt },
+    id: { type: GraphQLID },
 
 
     starring: {
@@ -145,14 +145,14 @@ const QueryType = new GraphQLObjectType({
     person: {
       type: PersonType,
       args: {
-        id: { type: GraphQLInt }
+        id: { type: GraphQLID }
       },
       resolve: (root, args) => fetchPerson(args.id)
     },
     movie: {
       type: MovieType,
       args: {
-        id: { type: GraphQLInt }
+        id: { type: GraphQLID }
       },
       resolve: (root, args) => fetchMovie(args.id)
 

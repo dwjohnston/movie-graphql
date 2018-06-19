@@ -1,0 +1,32 @@
+schema {
+  query: RootQueryType
+}
+
+# ...
+type Image {
+  height: Int
+  width: Int
+  absoluteFilePath: String
+}
+
+# A movie
+type Movie {
+  name: String
+  image: Image
+  id: ID
+  starring: [Person]
+}
+
+# An actor or a crew member
+type Person {
+  name: String
+  id: ID
+  image: Image
+  appearsIn: [Movie]
+}
+
+type RootQueryType {
+  person(id: ID): Person
+  movie(id: ID): Movie
+}
+
