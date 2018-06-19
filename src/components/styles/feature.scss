@@ -1,13 +1,21 @@
 .feature {
     
-    h2 {
+    h2,h3 {
         text-align: center; 
     }
     
+    .body {
+        display: flex; 
+
+        &> div {
+            padding: 1em;
+        }
+    }
     
     .starring, .appears-in {
     
         display: flex;
         flex-flow: row wrap; 
+        justify-content: center;
     }
 }

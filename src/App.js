@@ -7,35 +7,51 @@ import { graphql, QueryRenderer } from 'react-relay';
 import MovieFeature from "./components/MovieFeature";
 
 class App extends Component {
+
+
+
+  //Redux might 
+
   render() {
+
+
+    let movieID = 12; 
     return (
 
       <div className="App">
-        <MovieFeature movieID={12} />
+  <QueryRenderer
+                environment={environment}
+                query={graphql`
+          query AppQuery($movieID: Int!) {
+            movie (restId:$movieID) {
+              name
+              summary
+              image {
+                  absoluteFilePath
+              }
+              starring {
+                  name 
+                  image {
+                    absoluteFilePath
+                  }
+              }
+            }  
+          }
+        `}
+                variables={{ movieID }}
+                render={({ error, props }) => {
+                    if (error) {
+                        return <div>Error!</div>;
+                    }
+                    if (!props) {
+                        return <div>Loading...</div>;
+                    }
+
+                    console.log(props);
+                    return <MovieFeature movie = {props.movie}/> ;
+                }}
+            />
       </div>
-      //  <QueryRenderer
-      //         environment={environment}
-      //         query={graphql`
-      //           query AppQuery {
-      //             person (id:12) {
-      //               id
-      //               name
-      //             }  
-      //           }
-      //         `}
-      //         variables={{}}
-      //         render={({error, props}) => {
-      //           if (error) {
-      //             return <div>Error!</div>;
-      //           }
-      //           if (!props) {
-      //             return <div>Loading...</div>;
-      //           }
-      //           return <div>User ID: {props.person.id}</div>;
-      //         }}
-      //       />
-
-
     );
   }
 }

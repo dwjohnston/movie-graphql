@@ -1,10 +1,18 @@
 .preview {
-  padding: 0.5em; }
+  padding: 0.4em;
+  margin: 0.25em;
+  width: 7em;
+  background-color: #ccf; }
   .preview h4 {
     margin: 0.25em;
-    font-size: 0.8em; }
+    font-size: 0.8em;
+    height: 3em;
+    text-align: center; }
   .preview img {
-    object-fit: contain;
-    max-width: 6em;
+    object-fit: scale-down;
+    width: 6em;
+    height: 8em;
     margin: auto;
     display: block; }
+  .preview:hover {
+    cursor: pointer; }

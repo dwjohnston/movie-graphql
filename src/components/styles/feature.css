@@ -1,6 +1,12 @@
-.feature h2 {
+.feature h2, .feature h3 {
   text-align: center; }
+
+.feature .body {
+  display: flex; }
+  .feature .body > div {
+    padding: 1em; }
 
 .feature .starring, .feature .appears-in {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  justify-content: center; }

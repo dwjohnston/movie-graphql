@@ -15,6 +15,7 @@ type Movie {
   image: Image
   id: ID
   restId: Int
+  summary: String
   starring: [Person]
 }
 

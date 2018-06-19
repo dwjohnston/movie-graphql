@@ -136,7 +136,12 @@ const MovieType = new GraphQLObjectType({
     },
     restId: {
       type : GraphQLInt,
-      resolve: m => r.id
+      resolve: m => m.id
+    },
+
+    summary: {
+      type: GraphQLString, 
+      resolve: m => m.overview
     },
 
 

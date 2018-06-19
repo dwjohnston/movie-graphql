@@ -13,50 +13,31 @@ class MovieFeature extends Component {
 
     render() {
 
-        const { movieID } = this.props;
+        const {movie} = this.props; 
 
-        return (
+        return(<div className="feature movie-feature">
+        <h2> {movie.name} </h2>
 
-            <QueryRenderer
-                environment={environment}
-                query={graphql`
-          query MovieFeatureQuery($movieID: Int!) {
-            movie (restId:$movieID) {
-              name
-              image {
-                  absoluteFilePath
-              }
-              starring {
-                  restId
-              }
-            }  
-          }
-        `}
-                variables={{ movieID }}
-                render={({ error, props }) => {
-                    if (error) {
-                        return <div>Error!</div>;
-                    }
-                    if (!props) {
-                        return <div>Loading...</div>;
-                    }
+        <div className="body">
+            <div className="image-container">
+                {movie.image && <img src={movie.image.absoluteFilePath}></img>}
+            </div>
+            <div>
+                <p>
+                    {movie.summary}
+                </p>
+            </div>
+        </div>
 
-                    console.log(props);
-                    return <div className ="feature movie-feature">
-                        <h2> {props.movie.name} </h2>
+        <h3> starring </h3>
 
-                        {props.movie.image && <img src={props.movie.image.absoluteFilePath}></img>}
+        <div className="starring">
+            {movie.starring.map((person, i) => <PersonPreview key={i} person={person} />)}
+        </div>
 
-                        <h3> starring </h3>
+    </div>
 
-                        <div className="starring">
-                            {props.movie.starring.map((v, i) => <PersonPreview key={i} personID={v.restId} />)}
-                        </div>
-
-                    </div>;
-                }}
-            />
-
+          
 
         );
     }
