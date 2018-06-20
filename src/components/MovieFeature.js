@@ -32,7 +32,7 @@ class MovieFeature extends Component {
         <h3> starring </h3>
 
         <div className="starring">
-            {movie.starring.map((person, i) => <PersonPreview key={i} person={person} />)}
+            {movie.starring.map((person, i) => <PersonPreview key={i} person={person} handleClick = {this.props.handleFeaturePerson}/>)}
         </div>
 
     </div>

@@ -25,6 +25,7 @@ type Person {
   id: ID
   restId: Int
   image: Image
+  biography: String
   appearsIn: [Movie]
 }
 

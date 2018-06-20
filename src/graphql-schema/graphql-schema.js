@@ -16,10 +16,6 @@ fetch(`${BASE_URL}/configuration?api_key=${API_KEY}`).then(res => res.json()).th
 });
 
 function fetchResponseByURL(relativeURL) {
-
-
-  console.log("fetch", relativeURL);
-
   let url = `${BASE_URL}${relativeURL}?api_key=${API_KEY}`;
   return fetch(url).then(res => {
     let json = res.json();
@@ -46,6 +42,9 @@ function fetchMovieCast(id) {
 }
 
 
+
+
+
 function fetchMovieImages(id) {
   return fetchResponseByURL(`/movie/${id}/images`).then(json => json.posters[0]);
 }
@@ -61,6 +60,7 @@ const PersonType = new GraphQLObjectType({
     name: {
       type: GraphQLString,
       resolve: person => {
+        console.log(person);
         return person.name;
       }
     },
@@ -79,17 +79,16 @@ const PersonType = new GraphQLObjectType({
     },
 
 
-    biography: {
-      type: GraphQLString
-    },
-
-
     appearsIn: {
       type: new GraphQLList(MovieType),
       resolve: person => {
         return fetchPersonCastCredits(person.id)
       }
     }
+    //   friends: {
+    //     type: new GraphQLList(PersonType),
+    //     resolve: person => // Fetch the friends with the URLs `person.friends`,
+    //   },
   }),
 
 
@@ -112,6 +111,7 @@ const ImageType = new GraphQLObjectType({
     absoluteFilePath: {
       type: GraphQLString,
       resolve: image => {
+        console.log(IMAGE_URL, "AA")
         return `${IMAGE_URL}/w185${image.file_path}`;  //We're just hard coding the size here for now. 
       }
     }
